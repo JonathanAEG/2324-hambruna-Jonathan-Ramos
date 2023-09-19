@@ -12,7 +12,7 @@ const fetchAsyncData = async()=>{
 
         const items = result.items.item;
 
-        donutAzucar(items);
+        donutSugar(items);
         donutHierro(items);
         donutProteine(items);
         donutFibre(items)
@@ -37,11 +37,11 @@ fetchAsyncData();
 
 //Donut con más azucar
 
-function donutAzucar(items){
+function donutSugar(items){
 
     const maxSugarValue = items.reduce((max,item)=> Math.max(max, parseInt(item.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars))
     ,parseInt(items[0].nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars));
-    
+
     items.filter(item=> parseInt(item.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars) === maxSugarValue).map(item=> console.log(`El Donut con más Azucar es ${item.name}`));
 }
 
