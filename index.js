@@ -23,6 +23,7 @@ const fetchAsyncData = async()=>{
         vitamineAverage(items);
         listDonutsBatter(items);
         listDonutsTopping(items);
+        buyDonuts(items);
 
 
         console.log(result.items.item[4].nutrition_facts.nutrition.vitamines[0])
@@ -134,7 +135,7 @@ function vitamineAverage(items){
 
 ///////////////////
 /////Fase 3
-//////////////////
+///////////////////
 
 function listDonutsBatter(items){
 
@@ -153,4 +154,17 @@ function listDonutsTopping(items){
         console.log(`El donut llamado ${item.name} dispone de los siguientes toppings:`)
         item.topping.map(item=> console.log(item.type))
     })
+}
+
+///////////////////
+/////Fase 4
+///////////////////
+
+
+
+function buyDonuts(items){
+
+
+    const coins = 4;
+    items.map(item=>console.log(`Podremos comprar ${Math.floor(coins/item.ppu)} donuts ${item.name} y nos sobrara un total de ${(coins%item.ppu).toFixed(2)} monedas.`))
 }
