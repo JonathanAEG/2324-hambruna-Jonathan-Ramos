@@ -21,6 +21,9 @@ const fetchAsyncData = async()=>{
         donutCaloriesAverage(items);
         donutSaturatedFatSum(items);
         vitamineAverage(items);
+        listDonutsBatter(items);
+        listDonutsTopping(items);
+
 
         console.log(result.items.item[4].nutrition_facts.nutrition.vitamines[0])
 
@@ -127,4 +130,27 @@ function vitamineAverage(items){
     }))
 
     vitamineValues.map(vitamine=> console.log(`El porcentaje medio de la vitamina ${vitamine.type} en los donuts es del ${vitamine.percent/items.length}%.`))
+}
+
+///////////////////
+/////Fase 3
+//////////////////
+
+function listDonutsBatter(items){
+
+
+    items.map(item=>{
+        console.log(`El donut llamado ${item.name} dispone de las siguientes masas:`)
+        item.batters.batter.map(item=> console.log(item.type))
+    })
+}
+
+
+function listDonutsTopping(items){
+
+
+    items.map(item=>{
+        console.log(`El donut llamado ${item.name} dispone de los siguientes toppings:`)
+        item.topping.map(item=> console.log(item.type))
+    })
 }
