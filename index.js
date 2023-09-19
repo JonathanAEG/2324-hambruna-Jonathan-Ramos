@@ -13,7 +13,7 @@ const fetchAsyncData = async()=>{
         const items = result.items.item;
 
         donutSugar(items);
-        donutHierro(items);
+        donutIron(items);
         donutProteine(items);
         donutFibre(items);
         listDonutCalories(items);
@@ -55,12 +55,29 @@ function donutSugar(items){
     items.filter(item=> parseInt(item.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars) === maxSugarValue).map(item=> console.log(`El Donut con más Azucar es ${item.name}`));
 }
 
-function donutHierro(items){
+function donutIron(items){
 
-    const maxIronValue = items.reduce((max,item)=> Math.max(max, parseInt(item.nutrition_facts.nutrition.vitamines[3].percent))
-    ,parseInt(items[0].nutrition_facts.nutrition.vitamines[3].percent));
-    items.filter(item=> parseInt(item.nutrition_facts.nutrition.vitamines[3].percent) === maxIronValue).map(item=> console.log(`El Donut con más hierro es ${item.name}`));
+    const ironValues = [];
 
+    items.map(item=> item.nutrition_facts.nutrition.vitamines.map(vitamine=> {
+
+            if(vitamine.type === `Iron`){
+
+                ironValues.push(parseInt(vitamine.percent));
+            }
+    }))
+
+    const ironMaxValue = ironValues.reduce((max, value)=> Math.max(max, value));
+
+    items.map(item=>{
+
+        item.nutrition_facts.nutrition.vitamines.map(vitamine=>{
+
+            if(parseInt(vitamine.percent) === ironMaxValue && vitamine.type === `Iron`){
+                console.log(`El donut con más hierro es ${item.name}`)
+            }
+        })
+    })
 }
 
 function donutProteine(items){
