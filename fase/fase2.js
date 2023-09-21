@@ -40,7 +40,7 @@ function vitamineAverage(items){
 
             if(vitamineValuesVitamine.type === vitamine.type){
 
-                vitamineValuesVitamine.percent =+ parseInt(vitamine.percent);
+                vitamineValuesVitamine.percent += parseInt(vitamine.percent);
             }
         })
     }))
